@@ -1,0 +1,216 @@
+{% extends 'base.html' %}
+{% block title %}14일차 과제수행 - 김명석 네이버 뉴스기사 크롤링, 댓글 입력{% endblock %}
+
+{% block headscript %}
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+
+
+    <!-- General and theme style sheets -->
+    <link rel="stylesheet" href="reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'reveal.js/css/print/pdf.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Loading the mathjax macro -->
+    <!-- Load mathjax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <!-- MathJax configuration -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    <!-- End of mathjax configuration -->
+
+    <!-- Get Font-awesome from cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.css">
+
+
+
+    <!-- Custom stylesheet, it must be in the same directory as the html file -->
+    <link rel="stylesheet" href="custom.css">
+    <link rel="stylesheet" href="../../static/css/study.css">
+{% endblock %}
+{% block body %}
+  <div tabindex="-1" id="notebook" class="border-box-sizing">
+    <div class="container" id="notebook-container">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="14&#51068;&#52264;-&#44284;&#51228;&#49688;&#54665;---&#44608;&#47749;&#49437;">14&#51068;&#52264; &#44284;&#51228;&#49688;&#54665; - &#44608;&#47749;&#49437;<a class="anchor-link" href="#14&#51068;&#52264;-&#44284;&#51228;&#49688;&#54665;---&#44608;&#47749;&#49437;">&#182;</a></h2><h2 id="&#46300;&#47336;&#53433;&#51060;-&#46104;&#50612;&#48372;&#51088;-&#45348;&#51060;&#48260;-&#45684;&#49828;&#44592;&#49324;&#50640;-&#45843;&#44544;-&#51077;&#47141;&#54644;&#48372;&#44592;.">&#46300;&#47336;&#53433;&#51060; &#46104;&#50612;&#48372;&#51088; &#45348;&#51060;&#48260; &#45684;&#49828;&#44592;&#49324;&#50640; &#45843;&#44544; &#51077;&#47141;&#54644;&#48372;&#44592;.<a class="anchor-link" href="#&#46300;&#47336;&#53433;&#51060;-&#46104;&#50612;&#48372;&#51088;-&#45348;&#51060;&#48260;-&#45684;&#49828;&#44592;&#49324;&#50640;-&#45843;&#44544;-&#51077;&#47141;&#54644;&#48372;&#44592;.">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">selenium</span> <span class="k">import</span> <span class="n">webdriver</span>
+<span class="c1"># 로그인</span>
+<span class="n">account</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;id&#39;</span><span class="p">:</span><span class="s1">&#39;1rlaaudtjr&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;pw&#39;</span><span class="p">:</span><span class="s1">&#39;kms62197&amp;&#39;</span>
+<span class="p">}</span>
+<span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">(</span><span class="s2">&quot;chromedriver&quot;</span><span class="p">)</span>
+
+<span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://www.naver.com&quot;</span><span class="p">)</span>
+
+<span class="c1"># Login </span>
+<span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">account</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">])</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s2">&quot;pw&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">account</span><span class="p">[</span><span class="s1">&#39;pw&#39;</span><span class="p">])</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_css_selector</span><span class="p">(</span><span class="s2">&quot;span.btn_login &gt; input&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">re</span>
+<span class="c1"># goto News Service</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://news.naver.com/main/ranking/popularDay.nhn&quot;</span><span class="p">)</span>
+<span class="c1"># Crawling News article</span>
+<span class="n">p</span> <span class="o">=</span> <span class="s2">&quot;&lt;dt&gt;\s*?&lt;a\shref=</span><span class="se">\&quot;</span><span class="s2">(.*?)</span><span class="se">\&quot;</span><span class="s2">.*?&gt;(.*?)&lt;\/a&gt;&quot;</span>
+<span class="n">temp</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">driver</span><span class="o">.</span><span class="n">page_source</span><span class="p">)</span>
+
+<span class="n">newsList</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">driver</span><span class="o">.</span><span class="n">page_source</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">news</span> <span class="ow">in</span> <span class="n">newsList</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">news</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">news</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>&#34;6월 말부터 심한 진동&#34;…유가족 &#34;진상규명&#34; 요구 /main/ranking/read.nhn?mid=etc&amp;amp;sid1=111&amp;amp;rankingType=popular_day&amp;amp;oid=214&amp;amp;aid=0000859130&amp;amp;date=20180720&amp;amp;type=2&amp;amp;rankingSectionId=100&amp;amp;rankingSeq=1
+계엄령 해제 못하도록…국회의원 무더기 체포 계획까지 /main/ranking/read.nhn?mid=etc&amp;amp;sid1=111&amp;amp;rankingType=popular_day&amp;amp;oid=055&amp;amp;aid=0000660431&amp;amp;date=20180720&amp;amp;type=2&amp;amp;rankingSectionId=100&amp;amp;rankingSeq=2
+국회·언론 통제…&#39;민주주의 파괴&#39; 계획, 누가 왜 지시했나 /main/ranking/read.nhn?mid=etc&amp;amp;sid1=111&amp;amp;rankingType=popular_day&amp;amp;oid=437&amp;amp;aid=0000187179&amp;amp;date=20180720&amp;amp;type=2&amp;amp;rankingSectionId=100&amp;amp;rankingSeq=3
+文대통령, 정보요원 추모·격려…취임 첫 국정원 방문(종합) /main/ranking/read.nhn?mid=etc&amp;amp;sid1=111&amp;amp;rankingType=popular_day&amp;amp;oid=421&amp;amp;aid=0003494043&amp;amp;date=20180720&amp;amp;type=1&amp;amp;rankingSectionId=100&amp;amp;rankingSeq=4
+ 계엄사령관으로 왜 ‘서열 2위’ 육참총장을 세우려 했나  /main/ranking/read.nhn?mid=etc&amp;amp;sid1=111&amp;amp;rankingType=popular_day&amp;amp;oid=028&amp;amp;aid=0002418323&amp;amp;date=20180720&amp;amp;type=1&amp;amp;rankingSectionId=100&amp;amp;rankingSeq=5
+미중 통화전쟁 나서나…트럼프 &#34;위안화 급락&#34; vs 中 추가절… /main/ranking/read.nhn?mid=etc&amp;amp;sid1=111&amp;amp;rankingType=popular_day&amp;amp;oid=001&amp;amp;aid=0010222278&amp;amp;date=20180720&amp;amp;type=1&amp;amp;rankingSectionId=101&amp;amp;rankingSeq=1
+정부, 보물선 인양 계획에 제동…&#34;자금 조달 계획도 없어&#34; /main/ranking/read.nhn?mid=etc&amp;amp;sid1=111&amp;amp;rankingType=popular_day&amp;amp;oid=214&amp;amp;aid=0000859133&amp;amp;date=20180720&amp;amp;type=2&amp;amp;rankingSectionId=101&amp;amp;rankingSeq=2
+현대차 노사, 올해 임금협상 잠정합의(2보) /main/ranking/read.nhn?mid=etc&amp;amp;sid1=111&amp;amp;rankingType=popular_day&amp;amp;oid=001&amp;amp;aid=0010223653&amp;amp;date=20180720&amp;amp;type=1&amp;amp;rankingSectionId=101&amp;amp;rankingSeq=3
+[단독] 과천 ‘로또 아파트’ 당첨자들…중도금 대출 막히며 ‘… /main/ranking/read.nhn?mid=etc&amp;amp;sid1=111&amp;amp;rankingType=popular_day&amp;amp;oid=119&amp;amp;aid=0002270874&amp;amp;date=20180720&amp;amp;type=1&amp;amp;rankingSectionId=101&amp;amp;rankingSeq=4
+쉰들러, 정부에 3천억 소송 예고…ISD, 올해에만 4번째 /main/ranking/read.nhn?mid=etc&amp;amp;sid1=111&amp;amp;rankingType=popular_day&amp;amp;oid=055&amp;amp;aid=0000660450&amp;amp;date=20180720&amp;amp;type=2&amp;amp;rankingSectionId=101&amp;amp;rankingSeq=5
+어머니가 빼돌린 시험지로 공부한 고3 아들 &#34;사실 몰랐다&#34; /main/ranking/read.nhn?mid=etc&amp;amp;sid1=111&amp;amp;rankingType=popular_day&amp;amp;oid=001&amp;amp;aid=0010223427&amp;amp;date=20180720&amp;amp;type=1&amp;amp;rankingSectionId=102&amp;amp;rankingSeq=1
+고달픈 여름나기 현장…‘지·옥·고’를 아시나요  /main/ranking/read.nhn?mid=etc&amp;amp;sid1=111&amp;amp;rankingType=popular_day&amp;amp;oid=449&amp;amp;aid=0000155685&amp;amp;date=20180720&amp;amp;type=2&amp;amp;rankingSectionId=102&amp;amp;rankingSeq=2
+바다도 끓는다…대규모 폐사 위기에 양식장 &#39;비상&#39; /main/ranking/read.nhn?mid=etc&amp;amp;sid1=111&amp;amp;rankingType=popular_day&amp;amp;oid=214&amp;amp;aid=0000859136&amp;amp;date=20180720&amp;amp;type=2&amp;amp;rankingSectionId=102&amp;amp;rankingSeq=3
+‘10살 초등생과 합의 성관계?’…보습학원 원장, 성폭행 부인 /main/ranking/read.nhn?mid=etc&amp;amp;sid1=111&amp;amp;rankingType=popular_day&amp;amp;oid=421&amp;amp;aid=0003493118&amp;amp;date=20180720&amp;amp;type=1&amp;amp;rankingSectionId=102&amp;amp;rankingSeq=4
+&#34;둘째 못낳아&#34; &#34;일 때려칠판&#34; 어린이집에 분노한 엄마들 /main/ranking/read.nhn?mid=etc&amp;amp;sid1=111&amp;amp;rankingType=popular_day&amp;amp;oid=025&amp;amp;aid=0002837581&amp;amp;date=20180720&amp;amp;type=1&amp;amp;rankingSectionId=102&amp;amp;rankingSeq=5
+한반도에 &#39;습기 폭탄&#39;…진짜 찜통더위 온다 /main/ranking/read.nhn?mid=etc&amp;amp;sid1=111&amp;amp;rankingType=popular_day&amp;amp;oid=057&amp;amp;aid=0001269488&amp;amp;date=20180720&amp;amp;type=2&amp;amp;rankingSectionId=103&amp;amp;rankingSeq=1
+[단독] 국보급 백자라더니…값어치 &#39;0원&#39; 짜리 가짜 /main/ranking/read.nhn?mid=etc&amp;amp;sid1=111&amp;amp;rankingType=popular_day&amp;amp;oid=214&amp;amp;aid=0000859134&amp;amp;date=20180720&amp;amp;type=2&amp;amp;rankingSectionId=103&amp;amp;rankingSeq=2
+[날씨] 폭염 지역 확대 강화…경남 창녕 39.3도 /main/ranking/read.nhn?mid=etc&amp;amp;sid1=111&amp;amp;rankingType=popular_day&amp;amp;oid=055&amp;amp;aid=0000660415&amp;amp;date=20180720&amp;amp;type=2&amp;amp;rankingSectionId=103&amp;amp;rankingSeq=3
+[포토 에세이] 투명카누 타고 /main/ranking/read.nhn?mid=etc&amp;amp;sid1=111&amp;amp;rankingType=popular_day&amp;amp;oid=053&amp;amp;aid=0000025013&amp;amp;date=20180720&amp;amp;type=1&amp;amp;rankingSectionId=103&amp;amp;rankingSeq=4
+[기로에 선 한국 車산업] 한국GM, 5000만弗 추가 시설투자… /main/ranking/read.nhn?mid=etc&amp;amp;sid1=111&amp;amp;rankingType=popular_day&amp;amp;oid=014&amp;amp;aid=0004061908&amp;amp;date=20180720&amp;amp;type=1&amp;amp;rankingSectionId=103&amp;amp;rankingSeq=5
+트럼프 &#34;중국산 수입품 전액인 5천억$에 관세부과 준비&#34; 위… /main/ranking/read.nhn?mid=etc&amp;amp;sid1=111&amp;amp;rankingType=popular_day&amp;amp;oid=001&amp;amp;aid=0010223623&amp;amp;date=20180720&amp;amp;type=1&amp;amp;rankingSectionId=104&amp;amp;rankingSeq=1
+트럼프의 관세폭탄 불똥 ‘트럼프 모자’에도 튀었다 /main/ranking/read.nhn?mid=etc&amp;amp;sid1=111&amp;amp;rankingType=popular_day&amp;amp;oid=469&amp;amp;aid=0000315974&amp;amp;date=20180720&amp;amp;type=1&amp;amp;rankingSectionId=104&amp;amp;rankingSeq=2
+미중 무역전쟁 속 시진핑 UAE 도착…우군 확보전 &#39;시동&#39;(종… /main/ranking/read.nhn?mid=etc&amp;amp;sid1=111&amp;amp;rankingType=popular_day&amp;amp;oid=001&amp;amp;aid=0010223109&amp;amp;date=20180720&amp;amp;type=1&amp;amp;rankingSectionId=104&amp;amp;rankingSeq=3
+질주하는 美 경제… 성장률·일자리·기준금리 모두 한국 추… /main/ranking/read.nhn?mid=etc&amp;amp;sid1=111&amp;amp;rankingType=popular_day&amp;amp;oid=015&amp;amp;aid=0003982864&amp;amp;date=20180720&amp;amp;type=1&amp;amp;rankingSectionId=104&amp;amp;rankingSeq=4
+시댁 마당에 암매장된 日 주부...누가? 왜? /main/ranking/read.nhn?mid=etc&amp;amp;sid1=111&amp;amp;rankingType=popular_day&amp;amp;oid=052&amp;amp;aid=0001171652&amp;amp;date=20180720&amp;amp;type=2&amp;amp;rankingSectionId=104&amp;amp;rankingSeq=5
+[Science] 미생물 이식·시험관 인공수정…멸종위기 동물… /main/ranking/read.nhn?mid=etc&amp;amp;sid1=111&amp;amp;rankingType=popular_day&amp;amp;oid=009&amp;amp;aid=0004188392&amp;amp;date=20180720&amp;amp;type=1&amp;amp;rankingSectionId=105&amp;amp;rankingSeq=1
+삼성전자, 인도 시장 1위 놓고 샤오미와 초접전  /main/ranking/read.nhn?mid=etc&amp;amp;sid1=111&amp;amp;rankingType=popular_day&amp;amp;oid=119&amp;amp;aid=0002270920&amp;amp;date=20180720&amp;amp;type=1&amp;amp;rankingSectionId=105&amp;amp;rankingSeq=2
+&#39;비장의 무기&#39;는 황자총통… 한 번에 쇠구슬 20발 발사해 적… /main/ranking/read.nhn?mid=etc&amp;amp;sid1=111&amp;amp;rankingType=popular_day&amp;amp;oid=015&amp;amp;aid=0003982887&amp;amp;date=20180720&amp;amp;type=1&amp;amp;rankingSectionId=105&amp;amp;rankingSeq=3
+새 폰에 잔뜩 깔린 선탑재앱.. 국내외 ‘끼워팔기’ 규제 논란 /main/ranking/read.nhn?mid=etc&amp;amp;sid1=111&amp;amp;rankingType=popular_day&amp;amp;oid=014&amp;amp;aid=0004061890&amp;amp;date=20180720&amp;amp;type=1&amp;amp;rankingSectionId=105&amp;amp;rankingSeq=4
+&#34;거북선 19개砲 갖춰 막강화력… 전면부 대형 화포는 획기적… /main/ranking/read.nhn?mid=etc&amp;amp;sid1=111&amp;amp;rankingType=popular_day&amp;amp;oid=015&amp;amp;aid=0003982872&amp;amp;date=20180720&amp;amp;type=1&amp;amp;rankingSectionId=105&amp;amp;rankingSeq=5
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://news.naver.com&quot;</span><span class="o">+</span><span class="n">newsList</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&amp;amp;&quot;</span><span class="p">,</span><span class="s2">&quot;&amp;&quot;</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_css_selector</span><span class="p">(</span><span class="s2">&quot;.simplecmt_links &gt; a&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s2">&quot;cbox_module__write_textarea&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="s2">&quot;좋은 기사에요.&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+    </div>
+  </div>
+
+{% endblock %}
+{% block bodyscript %}
+{% endblock %}

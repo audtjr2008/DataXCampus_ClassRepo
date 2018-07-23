@@ -1,0 +1,327 @@
+{% extends 'base.html' %}
+{% block title %}2일차 과제 수행 - 김명석 slides{% endblock %}
+
+{% block headscript %}
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+
+    <!-- General and theme style sheets -->
+    <link rel="stylesheet" href="reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'reveal.js/css/print/pdf.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Loading the mathjax macro -->
+    <!-- Load mathjax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <!-- MathJax configuration -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    <!-- End of mathjax configuration -->
+
+    <!-- Get Font-awesome from cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.css">
+
+
+
+    <!-- Custom stylesheet, it must be in the same directory as the html file -->
+    <link rel="stylesheet" href="custom.css">
+    <link rel="stylesheet" href="../../static/css/study.css">
+{% endblock %}
+
+{% block body %}
+  <div tabindex="-1" id="notebook" class="border-box-sizing">
+    <div class="container" id="notebook-container">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Exercise-129:Two-Dice-Simulation">Exercise 129:Two Dice Simulation<a class="anchor-link" href="#Exercise-129:Two-Dice-Simulation">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">random</span> <span class="k">as</span> <span class="nn">rand</span>
+<span class="k">def</span> <span class="nf">roll_dice</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">rand</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span> <span class="o">+</span> <span class="n">rand</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">cnt_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">({</span><span class="mi">2</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="mi">4</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="mi">7</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="mi">8</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="mi">9</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="mi">11</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="mi">12</span><span class="p">:</span><span class="mi">0</span><span class="p">})</span>
+<span class="n">ex_per</span> <span class="o">=</span> <span class="p">[</span><span class="mf">2.78</span><span class="p">,</span><span class="mf">5.36</span><span class="p">,</span><span class="mf">8.33</span><span class="p">,</span><span class="mf">11.11</span><span class="p">,</span><span class="mf">13.89</span><span class="p">,</span><span class="mf">16.67</span><span class="p">,</span><span class="mf">13.89</span><span class="p">,</span><span class="mf">11.11</span><span class="p">,</span><span class="mf">8.33</span><span class="p">,</span><span class="mf">5.56</span><span class="p">,</span><span class="mf">2.78</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="n">cnt_dict</span><span class="p">[</span><span class="n">roll_dice</span><span class="p">()]</span> <span class="o">+=</span><span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Total&quot;</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span><span class="s2">&quot;Simulated&quot;</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s2">&quot;Expected&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span><span class="s2">&quot;Percent&quot;</span><span class="p">,</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s2">&quot;Percent&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">cnt_dict</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span><span class="nb">format</span><span class="p">((</span><span class="n">cnt_dict</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="mi">1000</span><span class="p">)</span><span class="o">*</span><span class="mi">100</span><span class="p">,</span><span class="s2">&quot;.2f&quot;</span><span class="p">),</span><span class="s1">&#39;</span><span class="se">\t\t</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">ex_per</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Total 	 Simulated 	 Expected
+	 Percent 	 Percent
+2 	 2.20 		 2.78
+3 	 5.20 		 5.36
+4 	 8.00 		 8.33
+5 	 12.10 		 11.11
+6 	 12.70 		 13.89
+7 	 16.50 		 16.67
+8 	 14.90 		 13.89
+9 	 10.90 		 11.11
+10 	 8.90 		 8.33
+11 	 5.10 		 5.56
+12 	 3.50 		 2.78
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Exercise-130:Text-Messaging">Exercise 130:Text Messaging<a class="anchor-link" href="#Exercise-130:Text-Messaging">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[64]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">symbol</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;.&quot;</span><span class="p">:</span><span class="s2">&quot;1&quot;</span><span class="p">,</span><span class="s2">&quot;,&quot;</span><span class="p">:</span><span class="s2">&quot;11&quot;</span><span class="p">,</span><span class="s2">&quot;?&quot;</span><span class="p">:</span><span class="s2">&quot;111&quot;</span><span class="p">,</span><span class="s2">&quot;!&quot;</span><span class="p">:</span><span class="s2">&quot;1111&quot;</span><span class="p">,</span><span class="s2">&quot;:&quot;</span><span class="p">:</span><span class="s2">&quot;11111&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;A&quot;</span><span class="p">:</span><span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="s2">&quot;B&quot;</span><span class="p">:</span><span class="s2">&quot;22&quot;</span><span class="p">,</span><span class="s2">&quot;C&quot;</span><span class="p">:</span><span class="s2">&quot;222&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;D&quot;</span><span class="p">:</span><span class="s2">&quot;3&quot;</span><span class="p">,</span><span class="s2">&quot;E&quot;</span><span class="p">:</span><span class="s2">&quot;33&quot;</span><span class="p">,</span><span class="s2">&quot;F&quot;</span><span class="p">:</span><span class="s2">&quot;333&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;G&quot;</span><span class="p">:</span><span class="s2">&quot;4&quot;</span><span class="p">,</span><span class="s2">&quot;H&quot;</span><span class="p">:</span><span class="s2">&quot;44&quot;</span><span class="p">,</span><span class="s2">&quot;I&quot;</span><span class="p">:</span><span class="s2">&quot;444&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;J&quot;</span><span class="p">:</span><span class="s2">&quot;5&quot;</span><span class="p">,</span><span class="s2">&quot;K&quot;</span><span class="p">:</span><span class="s2">&quot;55&quot;</span><span class="p">,</span><span class="s2">&quot;L&quot;</span><span class="p">:</span><span class="s2">&quot;555&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;M&quot;</span><span class="p">:</span><span class="s2">&quot;6&quot;</span><span class="p">,</span><span class="s2">&quot;N&quot;</span><span class="p">:</span><span class="s2">&quot;66&quot;</span><span class="p">,</span><span class="s2">&quot;O&quot;</span><span class="p">:</span><span class="s2">&quot;666&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;P&quot;</span><span class="p">:</span><span class="s2">&quot;7&quot;</span><span class="p">,</span><span class="s2">&quot;Q&quot;</span><span class="p">:</span><span class="s2">&quot;77&quot;</span><span class="p">,</span><span class="s2">&quot;R&quot;</span><span class="p">:</span><span class="s2">&quot;777&quot;</span><span class="p">,</span><span class="s2">&quot;S&quot;</span><span class="p">:</span><span class="s2">&quot;7777&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;T&quot;</span><span class="p">:</span><span class="s2">&quot;8&quot;</span><span class="p">,</span><span class="s2">&quot;U&quot;</span><span class="p">:</span><span class="s2">&quot;88&quot;</span><span class="p">,</span><span class="s2">&quot;V&quot;</span><span class="p">:</span><span class="s2">&quot;888&quot;</span><span class="p">,</span>
+          <span class="s2">&quot;W&quot;</span><span class="p">:</span><span class="s2">&quot;9&quot;</span><span class="p">,</span><span class="s2">&quot;X&quot;</span><span class="p">:</span><span class="s2">&quot;99&quot;</span><span class="p">,</span><span class="s2">&quot;Y&quot;</span><span class="p">:</span><span class="s2">&quot;999&quot;</span><span class="p">,</span><span class="s2">&quot;Z&quot;</span><span class="p">:</span><span class="s2">&quot;9999&quot;</span><span class="p">,</span>
+          <span class="s2">&quot; &quot;</span><span class="p">:</span><span class="s2">&quot;0&quot;</span>
+         <span class="p">}</span>
+
+<span class="n">str_input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+<span class="n">str_convert</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">str_input</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">i</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">in</span> <span class="n">symbol</span><span class="p">:</span>
+        <span class="n">str_convert</span> <span class="o">=</span> <span class="n">str_convert</span> <span class="o">+</span> <span class="n">symbol</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">upper</span><span class="p">()]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">str_convert</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Hello, World!
+4433555555666110966677755531111
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Exercise-131:-Morse-Code">Exercise 131: Morse Code<a class="anchor-link" href="#Exercise-131:-Morse-Code">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">morse</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="s2">&quot;.-&quot;</span><span class="p">,</span>   <span class="s2">&quot;J&quot;</span><span class="p">:</span> <span class="s2">&quot;.---&quot;</span><span class="p">,</span>   <span class="s2">&quot;S&quot;</span><span class="p">:</span> <span class="s2">&quot;...&quot;</span><span class="p">,</span>  <span class="s2">&quot;1&quot;</span><span class="p">:</span> <span class="s2">&quot;.----&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="s2">&quot;-...&quot;</span><span class="p">,</span> <span class="s2">&quot;K&quot;</span><span class="p">:</span> <span class="s2">&quot;-.-&quot;</span><span class="p">,</span>    <span class="s2">&quot;T&quot;</span><span class="p">:</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span>    <span class="s2">&quot;2&quot;</span><span class="p">:</span> <span class="s2">&quot;..---&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="s2">&quot;-.-.&quot;</span><span class="p">,</span> <span class="s2">&quot;L&quot;</span><span class="p">:</span> <span class="s2">&quot;.-..&quot;</span><span class="p">,</span>   <span class="s2">&quot;U&quot;</span><span class="p">:</span> <span class="s2">&quot;..-&quot;</span><span class="p">,</span>  <span class="s2">&quot;3&quot;</span><span class="p">:</span> <span class="s2">&quot;...--&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;D&quot;</span><span class="p">:</span> <span class="s2">&quot;-..&quot;</span><span class="p">,</span>  <span class="s2">&quot;M&quot;</span><span class="p">:</span> <span class="s2">&quot;--&quot;</span><span class="p">,</span>     <span class="s2">&quot;V&quot;</span><span class="p">:</span> <span class="s2">&quot;...-&quot;</span><span class="p">,</span> <span class="s2">&quot;4&quot;</span><span class="p">:</span> <span class="s2">&quot;....-&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;E&quot;</span><span class="p">:</span> <span class="s2">&quot;.&quot;</span><span class="p">,</span>    <span class="s2">&quot;N&quot;</span><span class="p">:</span> <span class="s2">&quot;-.&quot;</span><span class="p">,</span>     <span class="s2">&quot;W&quot;</span><span class="p">:</span> <span class="s2">&quot;.--&quot;</span><span class="p">,</span>  <span class="s2">&quot;5&quot;</span><span class="p">:</span> <span class="s2">&quot;.....&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;F&quot;</span><span class="p">:</span> <span class="s2">&quot;..-.&quot;</span><span class="p">,</span> <span class="s2">&quot;O&quot;</span><span class="p">:</span> <span class="s2">&quot;---&quot;</span><span class="p">,</span>    <span class="s2">&quot;X&quot;</span><span class="p">:</span> <span class="s2">&quot;-..-&quot;</span><span class="p">,</span> <span class="s2">&quot;6&quot;</span><span class="p">:</span> <span class="s2">&quot;-....&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;G&quot;</span><span class="p">:</span> <span class="s2">&quot;--.&quot;</span><span class="p">,</span>  <span class="s2">&quot;P&quot;</span><span class="p">:</span> <span class="s2">&quot;.--.&quot;</span><span class="p">,</span>   <span class="s2">&quot;Y&quot;</span><span class="p">:</span> <span class="s2">&quot;-.--&quot;</span><span class="p">,</span> <span class="s2">&quot;7&quot;</span><span class="p">:</span> <span class="s2">&quot;--...&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;H&quot;</span><span class="p">:</span> <span class="s2">&quot;....&quot;</span><span class="p">,</span> <span class="s2">&quot;Q&quot;</span><span class="p">:</span> <span class="s2">&quot;--.-&quot;</span><span class="p">,</span>   <span class="s2">&quot;Z&quot;</span><span class="p">:</span> <span class="s2">&quot;--..&quot;</span><span class="p">,</span> <span class="s2">&quot;8&quot;</span><span class="p">:</span> <span class="s2">&quot;- - -..&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;I&quot;</span><span class="p">:</span> <span class="s2">&quot;..&quot;</span><span class="p">,</span>   <span class="s2">&quot;R&quot;</span><span class="p">:</span> <span class="s2">&quot;.-.&quot;</span><span class="p">,</span>    <span class="s2">&quot;0&quot;</span><span class="p">:</span> <span class="s2">&quot;-----&quot;</span><span class="p">,</span><span class="s2">&quot;9&quot;</span><span class="p">:</span> <span class="s2">&quot;----.&quot;</span>
+<span class="p">}</span>
+
+<span class="n">str_input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+<span class="n">str_convert</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">str_input</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">i</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">in</span> <span class="n">morse</span><span class="p">:</span>
+        <span class="n">str_convert</span> <span class="o">=</span> <span class="n">str_convert</span> <span class="o">+</span><span class="n">morse</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">upper</span><span class="p">()]</span><span class="o">+</span><span class="s1">&#39; &#39;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">str_convert</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Hello, World!
+.... . .-.. .-.. --- .-- --- .-. .-.. -..
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Exercise-132:-Postal-Codes">Exercise 132: Postal Codes<a class="anchor-link" href="#Exercise-132:-Postal-Codes">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[68]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#Canadian postal code A2D3F3\</span>
+
+<span class="n">province</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;A&#39;</span><span class="p">:</span><span class="s2">&quot;Newfoundland&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;B&#39;</span><span class="p">:</span><span class="s2">&quot;Nova Scotia&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;C&#39;</span><span class="p">:</span><span class="s2">&quot;Prince Edward Island&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;E&#39;</span><span class="p">:</span><span class="s2">&quot;New Brunswick&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;G&#39;</span><span class="p">:</span><span class="s2">&quot;Quebec&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;H&#39;</span><span class="p">:</span><span class="s2">&quot;Quebec&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;J&#39;</span><span class="p">:</span><span class="s2">&quot;Quebec&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;K&#39;</span><span class="p">:</span><span class="s2">&quot;Ontario&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;L&#39;</span><span class="p">:</span><span class="s2">&quot;Ontario&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;M&#39;</span><span class="p">:</span><span class="s2">&quot;Ontario&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;N&#39;</span><span class="p">:</span><span class="s2">&quot;Ontario&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;P&#39;</span><span class="p">:</span><span class="s2">&quot;Ontario&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;R&#39;</span><span class="p">:</span><span class="s2">&quot;Manitoba&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;S&#39;</span><span class="p">:</span><span class="s2">&quot;Saskatchewan&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;T&#39;</span><span class="p">:</span><span class="s2">&quot;Alberta&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;V&#39;</span><span class="p">:</span><span class="s2">&quot;British Columbia&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;X&#39;</span><span class="p">:</span><span class="s2">&quot;Nunavaut or Northwest&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;Y&#39;</span><span class="p">:</span><span class="s2">&quot;Yukon&quot;</span>
+<span class="p">}</span>
+<span class="n">no_valid</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">,</span> <span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="s1">&#39;Q&#39;</span><span class="p">,</span> <span class="s1">&#39;U&#39;</span><span class="p">,</span> <span class="s1">&#39;W&#39;</span><span class="p">,</span> <span class="s1">&#39;Z&#39;</span><span class="p">]</span>
+<span class="n">isRural</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span><span class="s2">&quot;rural&quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="s2">&quot;urban&quot;</span><span class="p">}</span>
+
+
+<span class="n">str_input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">str_input</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="mi">6</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;not 6 character&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">str_input</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="ow">in</span> <span class="n">no_valid</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;No valid postal codes currently begin with D, F, I, O, Q, U, W, or Z.&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">([</span><span class="n">str_input</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">isnumeric</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">)]):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;the second, fourth and sixth characters are numbers.&quot;</span><span class="p">)</span>
+<span class="k">elif</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">([</span><span class="n">str_input</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">isalpha</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">2</span><span class="p">)]):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;the first, third and fifth characters are letters&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;the postal code is for a&quot;</span><span class="p">,</span><span class="n">isRural</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">str_input</span><span class="p">[</span><span class="mi">3</span><span class="p">])],</span>
+          <span class="s1">&#39;address in&#39;</span><span class="p">,</span><span class="n">province</span><span class="p">[</span><span class="n">str_input</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">+</span><span class="s1">&#39;.&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>T2N1N4
+the postal code is for a urban address in Alberta.
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    </div>
+  </div>
+{% endblock %}
+{% block bodyscript %}
+{% endblock %}

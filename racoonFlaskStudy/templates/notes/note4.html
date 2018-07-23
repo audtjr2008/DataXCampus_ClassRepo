@@ -1,0 +1,775 @@
+{% extends 'base.html' %}
+{% block title %}4일차 과제 수행 - 김명석{% endblock %}
+
+{% block headscript %}
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+
+    <!-- General and theme style sheets -->
+    <link rel="stylesheet" href="reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'reveal.js/css/print/pdf.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Loading the mathjax macro -->
+    <!-- Load mathjax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <!-- MathJax configuration -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    <!-- End of mathjax configuration -->
+
+    <!-- Get Font-awesome from cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.css">
+
+
+
+    <!-- Custom stylesheet, it must be in the same directory as the html file -->
+    <link rel="stylesheet" href="custom.css">
+    <link rel="stylesheet" href="../../static/css/study.css">
+{% endblock %}
+{% block body %}
+  <div tabindex="-1" id="notebook" class="border-box-sizing">
+    <div class="container" id="notebook-container">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercise82:-Taxi-Fare">Exercise82: Taxi Fare<a class="anchor-link" href="#Exercise82:-Taxi-Fare">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># a base fare of $4.00, plus $0.25 for every 140 meters</span>
+<span class="k">def</span> <span class="nf">taxi_fare</span><span class="p">(</span><span class="n">traveled_kilo</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">4.</span><span class="o">+</span> <span class="mf">0.25</span><span class="o">*</span><span class="p">((</span><span class="n">traveled_kilo</span><span class="o">*</span><span class="mi">1000</span><span class="p">)</span><span class="o">/</span><span class="mi">140</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="s2">&quot;km:&quot;</span><span class="p">,</span><span class="n">taxi_fare</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0 km: 4.0
+1 km: 5.785714285714286
+2 km: 7.571428571428571
+3 km: 9.357142857142858
+4 km: 11.142857142857142
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Exercise84-:-Median-of-Three-Value">Exercise84 : Median of Three Value<a class="anchor-link" href="#Exercise84-:-Median-of-Three-Value">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">median</span><span class="p">(</span><span class="n">num1</span><span class="p">,</span><span class="n">num2</span><span class="p">,</span><span class="n">num3</span><span class="p">):</span>
+    <span class="n">lst</span> <span class="o">=</span> <span class="nb">list</span><span class="p">([</span><span class="n">num1</span><span class="p">,</span><span class="n">num2</span><span class="p">,</span><span class="n">num3</span><span class="p">])</span>
+    <span class="n">lst</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">lst</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">cnt_num</span><span class="o">=</span> <span class="mi">0</span>
+<span class="n">num_list</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">cnt_num</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">input_line</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+        <span class="n">input_num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">input_line</span><span class="p">)</span> <span class="k">if</span> <span class="n">input_line</span><span class="o">.</span><span class="n">isnumeric</span><span class="p">()</span> <span class="k">else</span> <span class="kc">None</span>
+
+    <span class="k">if</span> <span class="n">input_num</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You should input number not string. &quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">cnt_num</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Median is&quot;</span><span class="p">,</span> <span class="n">median</span><span class="p">(</span><span class="n">num_list</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">num_list</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">num_list</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+        <span class="k">break</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">num_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">input_num</span><span class="p">)</span>
+        <span class="n">cnt_num</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>11
+1
+2
+Median is 2
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Exercise85:-Convert-an-Integer-to-its-Ordinal-Number">Exercise85: Convert an Integer to its Ordinal Number<a class="anchor-link" href="#Exercise85:-Convert-an-Integer-to-its-Ordinal-Number">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_ordinal</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+    <span class="n">ordinal</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span><span class="s2">&quot;First&quot;</span><span class="p">,</span><span class="mi">2</span><span class="p">:</span><span class="s2">&quot;Second&quot;</span><span class="p">,</span><span class="mi">3</span><span class="p">:</span><span class="s2">&quot;Third&quot;</span><span class="p">,</span><span class="mi">4</span><span class="p">:</span><span class="s2">&quot;Fourth&quot;</span><span class="p">,</span><span class="mi">5</span><span class="p">:</span><span class="s2">&quot;Fifth&quot;</span><span class="p">,</span><span class="mi">6</span><span class="p">:</span><span class="s2">&quot;Sixth&quot;</span><span class="p">,</span> <span class="mi">7</span><span class="p">:</span><span class="s2">&quot;Seventh&quot;</span><span class="p">,</span><span class="mi">8</span><span class="p">:</span><span class="s2">&quot;Eighth&quot;</span><span class="p">,</span><span class="mi">9</span><span class="p">:</span><span class="s2">&quot;Nineth&quot;</span><span class="p">,</span><span class="mi">10</span><span class="p">:</span><span class="s2">&quot;Tenth&quot;</span><span class="p">,</span> <span class="mi">11</span><span class="p">:</span><span class="s2">&quot;Eleventh&quot;</span><span class="p">,</span><span class="mi">12</span><span class="p">:</span><span class="s2">&quot;Twelfth&quot;</span><span class="p">}</span>
+    <span class="k">if</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">ordinal</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">ordinal</span><span class="p">[</span><span class="n">num</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">13</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">get_ordinal</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>First
+Second
+Third
+Fourth
+Fifth
+Sixth
+Seventh
+Eighth
+Nineth
+Tenth
+Eleventh
+Twelfth
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Exercise88:-Is-it-a-Valid-Triangle?">Exercise88: Is it a Valid Triangle?<a class="anchor-link" href="#Exercise88:-Is-it-a-Valid-Triangle?">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">is_valid_triangle</span><span class="p">(</span><span class="n">num1</span><span class="p">,</span><span class="n">num2</span><span class="p">,</span><span class="n">num3</span><span class="p">):</span>
+    <span class="n">lst</span> <span class="o">=</span> <span class="nb">list</span><span class="p">([</span><span class="n">num1</span><span class="p">,</span><span class="n">num2</span><span class="p">,</span><span class="n">num3</span><span class="p">])</span>
+    <span class="n">lst</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">lst</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">lst</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">&gt;</span> <span class="n">lst</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+<span class="n">cnt_num</span><span class="o">=</span> <span class="mi">0</span>
+<span class="n">num_list</span><span class="o">=</span><span class="p">[]</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">cnt_num</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">input_line</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+        <span class="n">input_num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">input_line</span><span class="p">)</span> <span class="k">if</span> <span class="n">input_line</span><span class="o">.</span><span class="n">isnumeric</span><span class="p">()</span> <span class="k">else</span> <span class="kc">None</span>
+
+    <span class="k">if</span> <span class="n">input_num</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You should input number not string. &quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">cnt_num</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">is_valid_triangle</span><span class="p">(</span><span class="n">num_list</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">num_list</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">num_list</span><span class="p">[</span><span class="mi">2</span><span class="p">]):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;It is valid triangle&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;It is not valid triangle&quot;</span><span class="p">)</span>
+        <span class="k">break</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">num_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">input_num</span><span class="p">)</span>
+        <span class="n">cnt_num</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>1
+2
+5
+It is not valid triangle
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Exercise92:-Is-a-Number-Prime?">Exercise92: Is a Number Prime?<a class="anchor-link" href="#Exercise92:-Is-a-Number-Prime?">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">is_prime</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">num</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">num</span><span class="o">%</span><span class="k">i</span> ==0and num != i:
+            <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">return</span> <span class="kc">True</span>
+
+<span class="n">input_line</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+<span class="n">input_num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">input_line</span><span class="p">)</span> <span class="k">if</span> <span class="n">input_line</span><span class="o">.</span><span class="n">isnumeric</span><span class="p">()</span> <span class="k">else</span> <span class="kc">None</span>
+
+<span class="k">if</span> <span class="n">input_num</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You should input number not string. &quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">is_prime</span><span class="p">(</span><span class="n">input_num</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">input_num</span><span class="p">,</span><span class="s2">&quot;is prime number&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">input_num</span><span class="p">,</span><span class="s2">&quot;is not prime number&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>6
+6 is not prime number
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Exercise86:-The-Twelve-Days-of-Christmas">Exercise86: The Twelve Days of Christmas<a class="anchor-link" href="#Exercise86:-The-Twelve-Days-of-Christmas">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[61]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">get_verse</span><span class="p">(</span><span class="n">verse</span><span class="p">):</span>
+    <span class="k">if</span> <span class="mi">0</span><span class="o">&lt;</span><span class="n">verse</span><span class="o">&lt;</span><span class="mi">13</span><span class="p">:</span>
+        <span class="n">ordinal</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span><span class="s2">&quot;first&quot;</span><span class="p">,</span><span class="mi">2</span><span class="p">:</span><span class="s2">&quot;second&quot;</span><span class="p">,</span><span class="mi">3</span><span class="p">:</span><span class="s2">&quot;third&quot;</span><span class="p">,</span><span class="mi">4</span><span class="p">:</span><span class="s2">&quot;fourth&quot;</span><span class="p">,</span><span class="mi">5</span><span class="p">:</span><span class="s2">&quot;fifth&quot;</span><span class="p">,</span><span class="mi">6</span><span class="p">:</span><span class="s2">&quot;sixth&quot;</span><span class="p">,</span> <span class="mi">7</span><span class="p">:</span><span class="s2">&quot;seventh&quot;</span><span class="p">,</span><span class="mi">8</span><span class="p">:</span><span class="s2">&quot;eighth&quot;</span><span class="p">,</span><span class="mi">9</span><span class="p">:</span><span class="s2">&quot;nineth&quot;</span><span class="p">,</span><span class="mi">10</span><span class="p">:</span><span class="s2">&quot;tenth&quot;</span><span class="p">,</span> <span class="mi">11</span><span class="p">:</span><span class="s2">&quot;eleventh&quot;</span><span class="p">,</span><span class="mi">12</span><span class="p">:</span><span class="s2">&quot;twelfth&quot;</span><span class="p">}</span>
+        <span class="n">verse_str</span> <span class="o">=</span> <span class="s2">&quot;On the &quot;</span>
+        <span class="n">verse_str</span> <span class="o">=</span> <span class="n">verse_str</span> <span class="o">+</span> <span class="n">ordinal</span><span class="p">[</span><span class="n">verse</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; day of Christmas </span><span class="se">\n</span><span class="s2">my true love sent to me:&quot;</span>
+
+        <span class="n">present</span> <span class="o">=</span> <span class="p">{</span><span class="mi">2</span><span class="p">:</span><span class="s2">&quot;Two turtle doves&quot;</span><span class="p">,</span><span class="mi">3</span><span class="p">:</span><span class="s2">&quot;Three French hens&quot;</span><span class="p">,</span><span class="mi">4</span><span class="p">:</span><span class="s2">&quot;Four calling birds&quot;</span><span class="p">,</span><span class="mi">5</span><span class="p">:</span><span class="s2">&quot;Five gold rings&quot;</span><span class="p">,</span><span class="mi">6</span><span class="p">:</span><span class="s2">&quot;Six geese a laying&quot;</span><span class="p">,</span><span class="mi">7</span><span class="p">:</span><span class="s2">&quot;Seven swans a swimming&quot;</span><span class="p">,</span><span class="mi">8</span><span class="p">:</span><span class="s2">&quot;Eight maids a milking&quot;</span><span class="p">,</span><span class="mi">9</span><span class="p">:</span><span class="s2">&quot;Nine drummers drumming&quot;</span><span class="p">,</span><span class="mi">10</span><span class="p">:</span><span class="s2">&quot;Ten pipers piping&quot;</span><span class="p">,</span><span class="mi">11</span><span class="p">:</span><span class="s2">&quot;Eleven ladies dancing&quot;</span><span class="p">,</span><span class="mi">12</span><span class="p">:</span><span class="s2">&quot;Twelve Lords a leaping&quot;</span><span class="p">}</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">verse</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">verse_str</span> <span class="o">=</span> <span class="n">verse_str</span> <span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">present</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span><span class="s2">&quot;,&quot;</span>
+
+        <span class="k">if</span> <span class="n">verse</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">verse_str</span> <span class="o">=</span> <span class="n">verse_str</span><span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">A partridge in a pear tree</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">verse_str</span> <span class="o">=</span> <span class="n">verse_str</span><span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">And a partridge in a pear tree</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+        <span class="k">return</span> <span class="n">verse_str</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">13</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">get_verse</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+On the first day of Christmas
+my true love sent to me:
+A partridge in a pear tree
+
+On the second day of Christmas
+my true love sent to me:
+Two turtle doves,
+And a partridge in a pear tree
+
+On the third day of Christmas
+my true love sent to me:
+Three French hens,
+Two turtle doves,
+And a partridge in a pear tree
+
+On the fourth day of Christmas
+my true love sent to me:
+Four calling birds,
+Three French hens,
+Two turtle doves,
+And a partridge in a pear tree
+
+On the fifth day of Christmas
+my true love sent to me:
+Five gold rings,
+Four calling birds,
+Three French hens,
+Two turtle doves,
+And a partridge in a pear tree
+
+On the sixth day of Christmas
+my true love sent to me:
+Six geese a laying,
+Five gold rings,
+Four calling birds,
+Three French hens,
+Two turtle doves,
+And a partridge in a pear tree
+
+On the seventh day of Christmas
+my true love sent to me:
+Seven swans a swimming,
+Six geese a laying,
+Five gold rings,
+Four calling birds,
+Three French hens,
+Two turtle doves,
+And a partridge in a pear tree
+
+On the eighth day of Christmas
+my true love sent to me:
+Eight maids a milking,
+Seven swans a swimming,
+Six geese a laying,
+Five gold rings,
+Four calling birds,
+Three French hens,
+Two turtle doves,
+And a partridge in a pear tree
+
+On the nineth day of Christmas
+my true love sent to me:
+Nine drummers drumming,
+Eight maids a milking,
+Seven swans a swimming,
+Six geese a laying,
+Five gold rings,
+Four calling birds,
+Three French hens,
+Two turtle doves,
+And a partridge in a pear tree
+
+On the tenth day of Christmas
+my true love sent to me:
+Ten pipers piping,
+Nine drummers drumming,
+Eight maids a milking,
+Seven swans a swimming,
+Six geese a laying,
+Five gold rings,
+Four calling birds,
+Three French hens,
+Two turtle doves,
+And a partridge in a pear tree
+
+On the eleventh day of Christmas
+my true love sent to me:
+Eleven ladies dancing,
+Ten pipers piping,
+Nine drummers drumming,
+Eight maids a milking,
+Seven swans a swimming,
+Six geese a laying,
+Five gold rings,
+Four calling birds,
+Three French hens,
+Two turtle doves,
+And a partridge in a pear tree
+
+On the twelfth day of Christmas
+my true love sent to me:
+Twelve Lords a leaping,
+Eleven ladies dancing,
+Ten pipers piping,
+Nine drummers drumming,
+Eight maids a milking,
+Seven swans a swimming,
+Six geese a laying,
+Five gold rings,
+Four calling birds,
+Three French hens,
+Two turtle doves,
+And a partridge in a pear tree
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Exercise-89:-Capitalize-It">Exercise 89: Capitalize It<a class="anchor-link" href="#Exercise-89:-Capitalize-It">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#“what time do i have to be there? what’s the address?”</span>
+<span class="c1"># “What time do I have to be there? What’s the address?”</span>
+<span class="c1"># “.”, “!” or “?”.</span>
+
+<span class="k">def</span> <span class="nf">capitalizer</span><span class="p">(</span><span class="n">arg_str</span><span class="p">):</span>
+    <span class="n">lst</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">arg_str</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">lst</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">isalpha</span><span class="p">():</span>
+        <span class="n">lst</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">lst</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">arg_str</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">lst</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span><span class="s1">&#39;!&#39;</span><span class="p">,</span><span class="s1">&#39;?&#39;</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lst</span><span class="p">[</span><span class="n">i</span><span class="p">:])):</span>
+                <span class="k">if</span> <span class="n">lst</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">isalpha</span><span class="p">():</span>
+                    <span class="n">lst</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">lst</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+                    <span class="k">break</span>
+    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span>
+
+
+<span class="n">input_line</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">capitalizer</span><span class="p">(</span><span class="n">input_line</span><span class="p">))</span>
+
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>what time do i have to be there? what&#39;s the address?
+What time do i have to be there? What&#39;s the address?
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Exercise-90:-Does-a-String-Represent-an-Integer?">Exercise 90: Does a String Represent an Integer?<a class="anchor-link" href="#Exercise-90:-Does-a-String-Represent-an-Integer?">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">isInteger</span><span class="p">(</span><span class="n">arg_str</span><span class="p">):</span>
+    <span class="n">arg_str</span> <span class="o">=</span> <span class="n">arg_str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">arg_str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="s1">&#39;+&#39;</span> <span class="ow">or</span> <span class="n">arg_str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">arg_str</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">isnumeric</span><span class="p">():</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">arg_str</span><span class="o">.</span><span class="n">isnumeric</span><span class="p">():</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">input_str</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">isInteger</span><span class="p">(</span><span class="n">input_str</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">input_str</span> <span class="p">,</span><span class="s2">&quot;is represent an integer&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">input_str</span> <span class="p">,</span><span class="s2">&quot;is not represent an integer&quot;</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>-99
+-99 is represent an integer
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Exercise-93:-Next-Prime">Exercise 93: Next Prime<a class="anchor-link" href="#Exercise-93:-Next-Prime">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">is_prime</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">num</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">num</span><span class="o">%</span><span class="k">i</span> ==0and num != i:
+            <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">return</span> <span class="kc">True</span>
+
+<span class="k">def</span> <span class="nf">nextPrime</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+    <span class="n">cnt_num</span> <span class="o">=</span> <span class="n">num</span>
+    <span class="k">while</span> <span class="kc">True</span> <span class="p">:</span>
+        <span class="k">if</span> <span class="n">is_prime</span><span class="p">(</span><span class="n">cnt_num</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">cnt_num</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">cnt_num</span> <span class="o">+=</span> <span class="mi">1</span>
+
+
+<span class="n">input_line</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+<span class="n">input_num</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">input_line</span><span class="p">)</span> <span class="k">if</span> <span class="n">input_line</span><span class="o">.</span><span class="n">isnumeric</span><span class="p">()</span> <span class="k">else</span> <span class="kc">None</span>
+
+<span class="k">if</span> <span class="n">input_num</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You should input number not string. &quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Next Prime number is&quot;</span><span class="p">,</span><span class="n">nextPrime</span><span class="p">(</span><span class="n">input_num</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>55
+Next Prime number is 59
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Exercise-96:-Check-a-Password">Exercise 96: Check a Password<a class="anchor-link" href="#Exercise-96:-Check-a-Password">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[48]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#at least 8 characters long and contains </span>
+<span class="c1">#at least one uppercase letter, </span>
+<span class="c1">#at least one lowercase letter, </span>
+<span class="c1">#and at least one number.</span>
+
+<span class="k">def</span> <span class="nf">check_password</span><span class="p">(</span><span class="n">arg_pw</span><span class="p">):</span>
+    <span class="n">length_flag</span> <span class="o">=</span> <span class="kc">True</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">arg_pw</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">7</span> <span class="k">else</span> <span class="kc">False</span>
+    <span class="n">upper_flag</span> <span class="o">=</span> <span class="kc">True</span> <span class="k">if</span> <span class="nb">any</span><span class="p">([</span><span class="n">i</span><span class="o">.</span><span class="n">isupper</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">arg_pw</span><span class="p">])</span> <span class="k">else</span> <span class="kc">False</span>
+    <span class="n">lower_flag</span> <span class="o">=</span> <span class="kc">True</span> <span class="k">if</span> <span class="nb">any</span><span class="p">([</span><span class="n">i</span><span class="o">.</span><span class="n">islower</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">arg_pw</span><span class="p">])</span> <span class="k">else</span> <span class="kc">False</span>
+    <span class="n">number_flag</span> <span class="o">=</span> <span class="kc">True</span> <span class="k">if</span> <span class="nb">any</span><span class="p">([</span><span class="n">i</span><span class="o">.</span><span class="n">isnumeric</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">arg_pw</span><span class="p">])</span> <span class="k">else</span> <span class="kc">False</span>
+    <span class="k">return</span> <span class="nb">all</span><span class="p">([</span><span class="n">length_flag</span><span class="p">,</span><span class="n">upper_flag</span><span class="p">,</span><span class="n">lower_flag</span><span class="p">,</span><span class="n">number_flag</span><span class="p">])</span>
+
+<span class="n">input_line</span> <span class="o">=</span> <span class="nb">input</span><span class="p">()</span>
+<span class="k">if</span> <span class="n">check_password</span><span class="p">(</span><span class="n">input_line</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Your entered password is confirmed&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Please endter right password&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>A24bdd23adsf
+Your entered password is confirmed
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    </div>
+  </div>
+{% endblock %}
+

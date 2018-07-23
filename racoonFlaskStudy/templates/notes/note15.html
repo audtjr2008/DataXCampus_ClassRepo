@@ -1,0 +1,318 @@
+{% extends 'base.html' %}
+{% block title %}5일차 과제 수행 - 김명석 네이버 뉴스기사 분석{% endblock %}
+
+{% block headscript %}
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+
+
+
+    <!-- General and theme style sheets -->
+    <link rel="stylesheet" href="reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="reveal.js/css/theme/simple.css" id="theme">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'reveal.js/css/print/pdf.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <!-- Loading the mathjax macro -->
+    <!-- Load mathjax -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_HTML"></script>
+    <!-- MathJax configuration -->
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+    </script>
+    <!-- End of mathjax configuration -->
+
+    <!-- Get Font-awesome from cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.css">
+
+
+
+    <!-- Custom stylesheet, it must be in the same directory as the html file -->
+    <link rel="stylesheet" href="custom.css">
+    <link rel="stylesheet" href="../../static/css/study.css">
+{% endblock %}
+{% block body %}
+  <div tabindex="-1" id="notebook" class="border-box-sizing">
+    <div class="container" id="notebook-container">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="&#44608;&#47749;&#49437;-15&#51068;&#52264;-&#44284;&#51228;&#49688;&#54665;">&#44608;&#47749;&#49437; 15&#51068;&#52264; &#44284;&#51228;&#49688;&#54665;<a class="anchor-link" href="#&#44608;&#47749;&#49437;-15&#51068;&#52264;-&#44284;&#51228;&#49688;&#54665;">&#182;</a></h2><h2 id="&#45348;&#51060;&#48260;-&#45684;&#49828;&#44592;&#49324;-&#48516;&#49437;&#44592;">&#45348;&#51060;&#48260; &#45684;&#49828;&#44592;&#49324; &#48516;&#49437;&#44592;<a class="anchor-link" href="#&#45348;&#51060;&#48260;-&#45684;&#49828;&#44592;&#49324;-&#48516;&#49437;&#44592;">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="1.-&#45348;&#51060;&#48260;-&#45684;&#49828;-&#44592;&#49324;-&#49828;&#53356;&#47000;&#54609;-&#54616;&#44592;">1. &#45348;&#51060;&#48260; &#45684;&#49828; &#44592;&#49324; &#49828;&#53356;&#47000;&#54609; &#54616;&#44592;<a class="anchor-link" href="#1.-&#45348;&#51060;&#48260;-&#45684;&#49828;-&#44592;&#49324;-&#49828;&#53356;&#47000;&#54609;-&#54616;&#44592;">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">selenium</span> <span class="k">import</span> <span class="n">webdriver</span>
+<span class="c1"># 네이버 로그인</span>
+<span class="n">account</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;id&#39;</span><span class="p">:</span><span class="s1">&#39;1rlaaudtjr&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;pw&#39;</span><span class="p">:</span><span class="s1">&#39;kms62197&amp;&#39;</span>
+<span class="p">}</span>
+<span class="n">driver</span> <span class="o">=</span> <span class="n">webdriver</span><span class="o">.</span><span class="n">Chrome</span><span class="p">(</span><span class="s2">&quot;chromedriver&quot;</span><span class="p">)</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;http://www.naver.com&quot;</span><span class="p">)</span>
+<span class="c1"># Login </span>
+<span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">account</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">])</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_id</span><span class="p">(</span><span class="s2">&quot;pw&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">send_keys</span><span class="p">(</span><span class="n">account</span><span class="p">[</span><span class="s1">&#39;pw&#39;</span><span class="p">])</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">find_element_by_css_selector</span><span class="p">(</span><span class="s2">&quot;span.btn_login &gt; input&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">click</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># goto News Service</span>
+<span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://news.naver.com/main/ranking/popularDay.nhn&quot;</span><span class="p">)</span>
+<span class="c1"># crawling news article</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="n">p</span> <span class="o">=</span> <span class="s2">&quot;&lt;dt&gt;\s*?&lt;a\shref=</span><span class="se">\&quot;</span><span class="s2">(.*?)</span><span class="se">\&quot;</span><span class="s2">.*?&gt;(.*?)&lt;\/a&gt;&quot;</span>
+<span class="n">article_p</span> <span class="o">=</span> <span class="s1">&#39;&lt;em\sclass=</span><span class="se">\&quot;</span><span class="s1">img_desc</span><span class="se">\&quot;</span><span class="s1">&gt;(.*?)&lt;a\shref.*?&gt;&#39;</span>
+<span class="n">temp</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="n">driver</span><span class="o">.</span><span class="n">page_source</span><span class="p">)</span>
+
+<span class="n">scrapedNews</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">news</span> <span class="ow">in</span> <span class="n">temp</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">news</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;https://news.naver.com&quot;</span><span class="o">+</span><span class="n">news</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&amp;amp;&quot;</span><span class="p">,</span><span class="s2">&quot;&amp;&quot;</span><span class="p">))</span>
+        <span class="n">article</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">article_p</span> <span class="p">,</span><span class="n">driver</span><span class="o">.</span><span class="n">page_source</span><span class="p">)</span>
+        <span class="n">article</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&quot;&lt;.*?&gt;&quot;</span><span class="p">,</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="n">article</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">scrapedNews</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="n">news</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+            <span class="s1">&#39;article&#39;</span> <span class="p">:</span><span class="n">article</span>
+        <span class="p">})</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;article Loading Fail&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>박근혜 &#39;특활비 1심&#39; 징역형…민주 &#34;인과응보&#34; 한국 &#34;책임 …
+계엄령 해제 못하도록…국회의원 무더기 체포 계획까지
+article Loading Fail
+국회·언론 통제…&#39;민주주의 파괴&#39; 계획, 누가 왜 지시했나
+article Loading Fail
+&#39;실행 의혹&#39; 짙어진 기무사 계엄령 문건…파장 일파만파
+[종합]文대통령 &#34;국정원, 적폐본산에서 평화 뒷받침 기관으…
+[단독] 과천 ‘로또 아파트’ 당첨자들…중도금 대출 막히며 ‘…
+article Loading Fail
+정부, 보물선 인양 계획에 제동…&#34;자금 조달 계획도 없어&#34;
+article Loading Fail
+서울 집값 &#39;꿈틀&#39;…전문가들 &#34;대세 상승 아니다&#34;
+article Loading Fail
+에어컨 계속 틀면서 전기요금 아끼는 방법?!
+article Loading Fail
+&#39;반쪽&#39;됐지만… 장위뉴타운 새 아파트값 급등
+어머니가 빼돌린 시험지로 공부한 고3 아들 &#34;사실 몰랐다&#34;
+[배문규의 에코와치]‘철새냐, 경제냐’…10년째 논란 ‘흑산공…
+‘10살 초등생과 합의 성관계?’…보습학원 원장, 성폭행 부인
+[단독]빗물 새는 전투용 텐트…품질 검사 생략했나
+article Loading Fail
+&#34;덥고 땀나는데&#34;…따릉이 헬멧 대여 첫날 시민들 &#39;시큰둥&#39;
+article Loading Fail
+[날씨] 폭염 지역 확대 강화…경남 창녕 39.3도
+article Loading Fail
+[단독] 국보급 백자라더니…값어치 &#39;0원&#39; 짜리 가짜
+article Loading Fail
+[포토 에세이] 투명카누 타고
+article Loading Fail
+노인은 &#39;간식&#39; 잘 먹어야 건강… 무엇을, 얼마나?
+[기로에 선 한국 車산업] 한국GM, 5000만弗 추가 시설투자…
+article Loading Fail
+[세계의 분쟁지역] IS와 사업 거래, 반군과 무기 거래... …
+케냐 중산층 꿈틀...의료·가전 &#39;한류 바람&#39;
+[월드 이슈] 경제 잘 나가는 日, 외국인 노동자 수용 더 늘…
+article Loading Fail
+25살 데니스 텐의 허망한 죽음...&#34;나는 한국인&#34;
+article Loading Fail
+유례없는 북반구 &#39;열돔&#39; 현상…끊이지 않는 산불
+article Loading Fail
+[Science] 미생물 이식·시험관 인공수정…멸종위기 동물…
+article Loading Fail
+삼성전자, 인도 시장 1위 놓고 샤오미와 초접전
+article Loading Fail
+새 폰에 잔뜩 깔린 선탑재앱.. 국내외 ‘끼워팔기’ 규제 논란
+article Loading Fail
+&#39;비장의 무기&#39;는 황자총통… 한 번에 쇠구슬 20발 발사해 적…
+&#34;거북선 19개砲 갖춰 막강화력… 전면부 대형 화포는 획기적…
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="2.-Word-tokenizing-with-Konlpy,-nltk">2. Word tokenizing with Konlpy, nltk<a class="anchor-link" href="#2.-Word-tokenizing-with-Konlpy,-nltk">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">konlpy.tag</span> <span class="k">import</span> <span class="n">Kkma</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">Counter</span>
+<span class="kn">import</span> <span class="nn">nltk</span>
+<span class="n">p</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;([ㄱ-하-ㅣ가-힣a-zA-Z0-9]+)+&#39;</span>
+<span class="n">k</span> <span class="o">=</span> <span class="n">Kkma</span><span class="p">()</span>
+
+<span class="n">newsList</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">news</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">scrapedNews</span><span class="p">):</span>
+        <span class="n">newsList</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+             <span class="s1">&#39;title&#39;</span><span class="p">:</span><span class="n">news</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">],</span>
+             <span class="s1">&#39;article&#39;</span> <span class="p">:</span><span class="n">news</span><span class="p">[</span><span class="s1">&#39;article&#39;</span><span class="p">],</span>
+             <span class="s1">&#39;tokened_by_Kkma&#39;</span> <span class="p">:</span> <span class="n">Counter</span><span class="p">(</span><span class="n">k</span><span class="o">.</span><span class="n">nouns</span><span class="p">(</span><span class="n">news</span><span class="p">[</span><span class="s1">&#39;article&#39;</span><span class="p">]))</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span>
+             <span class="s1">&#39;tokened_by_nltk&#39;</span> <span class="p">:</span> <span class="n">Counter</span><span class="p">(</span><span class="n">regexp_tokenize</span><span class="p">(</span><span class="n">news</span><span class="p">[</span><span class="s1">&#39;article&#39;</span><span class="p">],</span><span class="n">p</span><span class="p">))</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+        <span class="p">})</span>
+
+<span class="k">for</span> <span class="n">news</span> <span class="ow">in</span> <span class="n">newsList</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">news</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">news</span><span class="p">[</span><span class="s1">&#39;tokened_by_Kkma&#39;</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">news</span><span class="p">[</span><span class="s1">&#39;tokened_by_nltk&#39;</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>박근혜 &#39;특활비 1심&#39; 징역형…민주 &#34;인과응보&#34; 한국 &#34;책임 …
+[(&#39;일&#39;, 2), (&#39;박근&#39;, 1), (&#39;박근혜&#39;, 1), (&#39;혜&#39;, 1), (&#39;국정원&#39;, 1), (&#39;특활&#39;, 1), (&#39;특활비&#39;, 1), (&#39;비&#39;, 1), (&#39;상납&#39;, 1), (&#39;선고&#39;, 1)]
+[(&#39;전&#39;, 6), (&#39;박&#39;, 5), (&#39;이라고&#39;, 5), (&#39;대변인은&#39;, 4), (&#39;것&#39;, 4), (&#39;박근혜&#39;, 3), (&#39;국정원&#39;, 3), (&#39;특활비&#39;, 3), (&#39;대한&#39;, 3), (&#39;대통령의&#39;, 3)]
+
+&#39;실행 의혹&#39; 짙어진 기무사 계엄령 문건…파장 일파만파
+[(&#39;일&#39;, 2), (&#39;대&#39;, 2), (&#39;계엄&#39;, 1), (&#39;문건&#39;, 1), (&#39;작성&#39;, 1), (&#39;기무&#39;, 1), (&#39;기무사령부&#39;, 1), (&#39;사령부&#39;, 1), (&#39;연합&#39;, 1), (&#39;연합뉴스&#39;, 1)]
+[(&#39;계엄령&#39;, 10), (&#39;기무사&#39;, 9), (&#39;있다&#39;, 7), (&#39;세부자료가&#39;, 5), (&#39;전&#39;, 5), (&#39;문건이&#39;, 5), (&#39;문건&#39;, 5), (&#39;계엄&#39;, 4), (&#39;문건을&#39;, 4), (&#39;3월&#39;, 4)]
+
+[종합]文대통령 &#34;국정원, 적폐본산에서 평화 뒷받침 기관으…
+[(&#39;일&#39;, 2), (&#39;국민&#39;, 2), (&#39;서울&#39;, 1), (&#39;뉴&#39;, 1), (&#39;뉴시스&#39;, 1), (&#39;시스&#39;, 1), (&#39;전신&#39;, 1), (&#39;기자&#39;, 1), (&#39;문&#39;, 1), (&#39;문재인&#39;, 1)]
+[(&#39;대통령은&#39;, 8), (&#39;문&#39;, 8), (&#39;고&#39;, 7), (&#39;국정원의&#39;, 6), (&#39;며&#39;, 6), (&#39;것&#39;, 6), (&#39;업무보고를&#39;, 4), (&#39;있다&#39;, 4), (&#39;말했다&#39;, 4), (&#39;함께&#39;, 4)]
+
+&#39;반쪽&#39;됐지만… 장위뉴타운 새 아파트값 급등
+[(&#39;구&#39;, 2), (&#39;성북&#39;, 2), (&#39;장위&#39;, 2), (&#39;일&#39;, 2), (&#39;년&#39;, 2), (&#39;정비&#39;, 1), (&#39;정비구역&#39;, 1), (&#39;구역&#39;, 1), (&#39;해제&#39;, 1), (&#39;장&#39;, 1)]
+[(&#39;있다&#39;, 8), (&#39;관계자는&#39;, 6), (&#39;돌곶이로&#39;, 5), (&#39;고&#39;, 5), (&#39;잇는&#39;, 4), (&#39;구역이&#39;, 4), (&#39;장위뉴타운&#39;, 4), (&#39;설명했다&#39;, 4), (&#39;해제된&#39;, 3), (&#39;이&#39;, 3)]
+
+어머니가 빼돌린 시험지로 공부한 고3 아들 &#34;사실 몰랐다&#34;
+[(&#39;고&#39;, 1), (&#39;고3&#39;, 1), (&#39;3&#39;, 1), (&#39;내신&#39;, 1), (&#39;시험지&#39;, 1), (&#39;촬영&#39;, 1), (&#39;목적&#39;, 1), (&#39;소품&#39;, 1), (&#39;정&#39;, 1), (&#39;정회성&#39;, 1)]
+[(&#39;광주&#39;, 3), (&#39;경찰&#39;, 3), (&#39;고3&#39;, 2), (&#39;내신&#39;, 2), (&#39;시험지&#39;, 2), (&#39;촬영&#39;, 2), (&#39;정회성&#39;, 2), (&#39;유출된&#39;, 2), (&#39;시험문제로&#39;, 2), (&#39;공부해&#39;, 2)]
+
+[배문규의 에코와치]‘철새냐, 경제냐’…10년째 논란 ‘흑산공…
+[(&#39;년&#39;, 2), (&#39;이&#39;, 2), (&#39;만&#39;, 2), (&#39;간&#39;, 2), (&#39;시간&#39;, 2), (&#39;운&#39;, 1), (&#39;운무가&#39;, 1), (&#39;무가&#39;, 1), (&#39;흑산&#39;, 1), (&#39;흑산도&#39;, 1)]
+[(&#39;있다&#39;, 14), (&#39;수&#39;, 9), (&#39;이&#39;, 5), (&#39;국립공원&#39;, 5), (&#39;등&#39;, 5), (&#39;하지만&#39;, 4), (&#39;흑산공항&#39;, 4), (&#39;고&#39;, 4), (&#39;것으로&#39;, 4), (&#39;지역&#39;, 4)]
+
+‘10살 초등생과 합의 성관계?’…보습학원 원장, 성폭행 부인
+[(&#39;세&#39;, 2), (&#39;씨&#39;, 2), (&#39;이&#39;, 2), (&#39;1&#39;, 1), (&#39;주&#39;, 1), (&#39;디자이너&#39;, 1), (&#39;인천&#39;, 1), (&#39;뉴스&#39;, 1), (&#39;뉴스1&#39;, 1), (&#39;박&#39;, 1)]
+[(&#39;혐의로&#39;, 3), (&#39;보습학원&#39;, 3), (&#39;13세&#39;, 3), (&#39;이씨&#39;, 3), (&#39;이씨는&#39;, 3), (&#39;뉴스1&#39;, 2), (&#39;성폭행한&#39;, 2), (&#39;첫&#39;, 2), (&#39;공판에서&#39;, 2), (&#39;성폭력&#39;, 2)]
+
+노인은 &#39;간식&#39; 잘 먹어야 건강… 무엇을, 얼마나?
+[(&#39;노인&#39;, 1), (&#39;간식&#39;, 1), (&#39;섭취&#39;, 1), (&#39;섭취법&#39;, 1), (&#39;법&#39;, 1), (&#39;사진&#39;, 1), (&#39;헬스&#39;, 1), (&#39;헬스조선&#39;, 1), (&#39;조선&#39;, 1), (&#39;허기&#39;, 1)]
+[(&#39;간식&#39;, 5), (&#39;있다&#39;, 5), (&#39;노인에게&#39;, 4), (&#39;한다&#39;, 4), (&#39;노인은&#39;, 4), (&#39;간식을&#39;, 4), (&#39;좋다&#39;, 4), (&#39;헬스조선&#39;, 3), (&#39;먹으면&#39;, 3), (&#39;수&#39;, 3)]
+
+[세계의 분쟁지역] IS와 사업 거래, 반군과 무기 거래... …
+[(&#39;이&#39;, 3), (&#39;년&#39;, 3), (&#39;일&#39;, 2), (&#39;라파즈&#39;, 2), (&#39;간&#39;, 2), (&#39;만&#39;, 2), (&#39;자&#39;, 2), (&#39;유로&#39;, 2), (&#39;바&#39;, 2), (&#39;17&#39;, 1)]
+[(&#39;있다&#39;, 18), (&#39;무기&#39;, 15), (&#39;시리아&#39;, 13), (&#39;프랑스&#39;, 12), (&#39;이&#39;, 8), (&#39;중동&#39;, 7), (&#39;IS&#39;, 6), (&#39;무기를&#39;, 5), (&#39;라파즈&#39;, 5), (&#39;는&#39;, 5)]
+
+케냐 중산층 꿈틀...의료·가전 &#39;한류 바람&#39;
+[(&#39;이&#39;, 3), (&#39;중&#39;, 2), (&#39;19&#39;, 1), (&#39;19일&#39;, 1), (&#39;일&#39;, 1), (&#39;현지&#39;, 1), (&#39;현지시간&#39;, 1), (&#39;시간&#39;, 1), (&#39;케냐&#39;, 1), (&#39;나이&#39;, 1)]
+[(&#39;있다&#39;, 23), (&#39;케냐&#39;, 16), (&#39;나이로비&#39;, 5), (&#39;인프라&#39;, 5), (&#39;한국&#39;, 5), (&#39;며&#39;, 5), (&#39;현지&#39;, 4), (&#39;건설&#39;, 4), (&#39;케냐를&#39;, 4), (&#39;정부는&#39;, 4)]
+
+&#39;비장의 무기&#39;는 황자총통… 한 번에 쇠구슬 20발 발사해 적…
+[(&#39;수&#39;, 2), (&#39;채&#39;, 2), (&#39;황자&#39;, 1), (&#39;황자총통&#39;, 1), (&#39;총통&#39;, 1), (&#39;동차&#39;, 1), (&#39;동차임진왜란&#39;, 1), (&#39;임진왜란&#39;, 1), (&#39;당시&#39;, 1), (&#39;조선&#39;, 1)]
+[(&#39;것으로&#39;, 4), (&#39;가장&#39;, 4), (&#39;데&#39;, 4), (&#39;천자총통과&#39;, 3), (&#39;추정된다&#39;, 3), (&#39;배&#39;, 3), (&#39;발사한&#39;, 3), (&#39;사용됐다&#39;, 3), (&#39;한&#39;, 3), (&#39;황자총통은&#39;, 3)]
+
+&#34;거북선 19개砲 갖춰 막강화력… 전면부 대형 화포는 획기적…
+[(&#39;개&#39;, 2), (&#39;만큼&#39;, 2), (&#39;조선&#39;, 1), (&#39;조선후기&#39;, 1), (&#39;후기&#39;, 1), (&#39;수군&#39;, 1), (&#39;수군조련&#39;, 1), (&#39;조련&#39;, 1), (&#39;등장&#39;, 1), (&#39;귀선&#39;, 1)]
+[(&#39;채&#39;, 5), (&#39;화포를&#39;, 5), (&#39;교수는&#39;, 5), (&#39;2층&#39;, 4), (&#39;가장&#39;, 4), (&#39;큰&#39;, 4), (&#39;거북선&#39;, 4), (&#39;전면에&#39;, 3), (&#39;설치됐다&#39;, 3), (&#39;좌우로&#39;, 3)]
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    </div>
+  </div>
+{% endblock %}
+{% block bodyscript %}
+{% endblock %}
+
